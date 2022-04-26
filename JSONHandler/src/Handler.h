@@ -11,6 +11,7 @@ using nlohmann::json;
 class Handler
 {
 public:
+typedef double float32_t;
     Handler();
     ~Handler();
     uint32_t createEntry(std::string name);
@@ -20,6 +21,8 @@ public:
     uint32_t removeEntry(json& data, std::string key);
 
     void addArrayEntry(json& data, std::vector<uint32_t>);
+
+    void addArrayEntry(json& data, std::deque<float32_t> newarray);
 
     void parseStringToJson(std::string& data);
     json getJsonFromHexRep(std::vector<uint8_t> data);

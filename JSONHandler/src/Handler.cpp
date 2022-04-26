@@ -1,6 +1,7 @@
 #include "Handler.h"
 
 #include <iostream>
+#include <deque>
 
 
 
@@ -40,15 +41,20 @@ uint32_t Handler::removeEntry(json& data, std::string key)
 }
 void Handler::addArrayEntry(json& data, std::vector<uint32_t> newarray)
 {
-    data.append(newarray);
+    json j_vec(newarray);
+    data.merge_patch(j_vec);
 
 }
-std::vector<int> c_vector{ 1, 2, 3, 4 };
+void Handler::addArrayEntry(json& data, std::deque<float32_t> newarray)
+{
+    json j_deque(newarray);
+    data.merge_patch(j_vec);
 
+}
 // [1, 2, 3, 4]
 
-std::deque<double> c_deque{ 1.2, 2.3, 3.4, 5.6 };
-json j_deque(c_deque);
+ c_deque{ 1.2, 2.3, 3.4, 5.6 };
+
 // [1.2, 2.3, 3.4, 5.6]
 
 std::list<bool> c_list{ true, true, false, true };
